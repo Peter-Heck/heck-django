@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+	<div class='container'>
+		<form method="POST" url="{% url 'logout' %}">
+			{% csrf_token %}
+			<button type='submit'>Logout</button>
+			<a href="{% url 'home' %}">Cancel</a>
+		</form>
+	</div>
+{% endblock content %}

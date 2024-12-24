@@ -1,0 +1,48 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="author" content="Peter Heck">
+    <meta name="description" content="This is the Heck Family website to make it easier for the entire Heck family to stay connected!">
+    <title>One Heck of a Website</title>
+    <meta name="keywords" content="Heck, Heck Family, Heck Social, One Heck Of A Website">
+    <link rel="stylesheet" href= "{% static 'styles/styles.css' %}">
+    <link rel="icon" type="image/x-icon" href="{% static 'images/pageImages/favicon.ico' %}">
+    <script src="https://unpkg.com/htmx.org@1.6.0"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sortablejs@latest/Sortable.min.js"></script>
+    <script src="{% static 'js/index.js' %}" defer></script>
+    <style>
+        .centralize-div {
+          display: flex !important;
+          justify-content: center !important;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <div id="logo-h1">
+        <h1><a href="{% url 'index' %}">One Heck Of A Website</a></h1>
+        <a href="{% url 'index' %}"><img src="{% static 'images/pageImages/heck_logo.svg' %}" alt='Logo for One Heck of a Website'></a>
+    </div>
+    <nav>
+        <ul>
+            <li id="home_link"><a href="{% url 'index' %}">Home</a></li>
+            <li id="profile_link"><a href="{% url 'protected' %}"><img src="{% static 'images/profilePics/blank-profile.png' %}" alt='Blank profile picture to signify profile'><p>Profile</p></a></li>
+        </ul>
+    </nav>
+</header>
+
+<main>
+    {% block content %}{% endblock content %}
+</main>
+
+<footer>
+        <p><small>Copyright &copy;2024</small></p>
+        <p><small><a href="{% url 'privacy' %}">Privacy Policy</a></small></p>
+        <p>Contact Email:      <a href='mailto:oneheckofawebsite@gmail.com'>oneheckofawebsite@gmail.com</a></p>
+</footer>
+
+</body>
+</html>

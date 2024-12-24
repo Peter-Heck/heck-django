@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class='container'>
+        <h2>Post</h2>
+        <form method="POST" action="{% url 'make_post' %}" enctype="multipart/form-data">
+            {% csrf_token %}
+			{{form.as_p}}
+			<button type='submit'>Post</button>
+        </form>
+    </div>
+{% endblock content %}

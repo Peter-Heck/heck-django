@@ -1,0 +1,27 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <div class='container'>
+        <h2>Welcome, {{request.user.username}}!</h2>
+        {% comment %} This will lead to the protected HTML page {% endcomment %}
+        <a href="{% url 'protected' %}">Go to the protected page!</a>
+        {% comment %}This is the button to lead to the logout page {% endcomment %}
+        <form method="POST" action="{% url 'logout' %}">
+            {% csrf_token %}
+            <button type='submit'>Logout</button>
+        </form>
+    </div>
+        <h2>Users</h2>
+        <ul>
+                {% for user in users %}
+                <ul>
+                        <li>ID: {{user.id}}</li>
+                        <li>Name: {{user.name}}</li>
+                        <li>Bio: {{user.bio}}</li>
+                        {% comment %} <li>Profile Picture: <img src="{% static 'images/' %}{{user.profilePic}}" alt="Profile Picture of {{user.name}}"></li> {% endcomment %}
+                </ul>
+                {% endfor %}
+        </ul>
+        <h3><a href="{% url 'index' %}">Index</a></h3>
+{% endblock content %}

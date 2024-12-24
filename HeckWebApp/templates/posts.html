@@ -1,0 +1,33 @@
+{% load static %}
+<div class="container">
+    <div class="content" id="content">
+        {% for post in posts %}
+            {% if post.author != None %}
+
+            <div class="post_class">
+                {% if post.title != None and post.title != '' %}
+                <h3>{{post.title}}</h3>
+                {% endif %}
+
+                <p class='post_info'><small>{{post.post_date}}      ||      <a href="{% url 'profile' name=post.creator.name %}">{{post.creator.name}}</a></small></p>
+
+                {% if post.image != None and post.image != '' %}
+                <img src="{% static 'images/' %}{{post.image}}" alt="Picture for post by {{post.creator.name}}">
+                {% endif %}
+
+                {% if post.body != None and post.body != '' %}
+                <p class="post-body">{{post.body}}</p>
+                {% endif %}
+            </div>
+
+            {% endif %}
+        {% endfor %}
+
+        <div class="centralize-div py-5" id="load-more">
+            {% if posts.has_next %}
+            <div class="ui divider"></div>
+            <button class="btn btn-primary" hx-get="{% url 'posts' %}" hx-vals='{"page": "{{ posts.next_page_number }}", "posts": "{{ posts }}"}' hx-target="#load-more" hx-swap="outerHTML">
+                Load more
+            </button>
+            {% endif %}
+    </div>
